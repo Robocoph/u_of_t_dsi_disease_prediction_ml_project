@@ -19,8 +19,8 @@ Classification: Which symptom features are the most significant predictors of a 
 
 - We found four key takeaways:
     - Symptoms like "Chest pain", "Sweating", "Breathlessness" and "Vomiting" are significant predictors of a patient having a "Heart attack"
-    - However, it is not a good idea to just go by these direct symptoms because all of these symptoms are shared by three other prognosis (GERD, Pneumonia and Tuberculosis)
-    - Hence, a physician, a healthcare worker or an individual must try to isolate/exclude the following symptoms to narrow down on a potential heart attack prognosis
+    - However, it is not a good idea to just go by these direct symptoms because these symptoms are partially shared by three other prognosis (GERD, Pneumonia and Tuberculosis)
+    - Hence, a physician, a healthcare worker or an individual must try to isolate/exclude the following symptoms (strongly associated with GERD, Pneumonia and Tuberculosis) to accurately identify a potential heart attack prognosis
         - acidity, 
         - blood_in_sputum, 
         - chills, 
@@ -37,7 +37,7 @@ Classification: Which symptom features are the most significant predictors of a 
         - weightloss
         - yellowing_of_eyes 
 
-    - We also learned that due to symptom separation in the data we got unusual accuracy, which is almost impossible in the real-world. Hence, data quality is absolutely crucial
+    - Due to symptom separation in the dataset we got unusual accuracy, which is almost impossible in the real-world. Hence, we may need to find other datasets to be able to predict these diseases with accuracy. This includes not just binary (yes/no) symptoms, but also the gradience of it in numeric values. We imagine chest pain in GERD will be significantly less painful than that experienced by someone having a Heart attack. Hence, just binary symptoms may not be enough or prudent to use in an ML application context.
 
 **Data Source**
 Kaggle, Disease Prediction using Machine Learning 
@@ -47,16 +47,15 @@ https://www.kaggle.com/datasets/kaushil268/disease-prediction-using-machine-lear
 **Methodology**
 
 - This research developed a machine learning model for predicting "Heart attack" from the symptoms
-- While considering "Heart attack" we reviewed three prognosis which are similar to it (Tuberculosis, Pneumonia, and GERD) based on the cosine similarity of the symptoms
-- Data preparation involved filtering for target prognoses, and feature selection, and strictly preventing data leakage through train and test split
-- Initial analysis explored symptom similarity and prevalence patterns
+- While considering "Heart attack" we reviewed three prognosis (Tuberculosis, Pneumonia, and GERD) based on the cosine similarity of symptoms
+- Data preparation involved filtering for target prognoses, and dimensionality reduction, and strictly preventing data leakage through train and test split
+- Initial analysis explored symptom similarity and prevalence patterns to better understand the relationship of symptoms and prognosis
 - A Random Forest Classifier was chosen for its balance of performance and interpretability
 - The model was robustly trained and evaluated using 5-fold Stratified Cross-Validation
 - Hyperparameter optimization was performed using GridSearchCV
 - Consistent 100% accuracy across Random Forest, Logistic Regression, and Decision Tree models was observed
-- This perfect performance indicated inherent data separability, confirmed by Decision Tree visualization
 - The unusually high and in fact impractical in real world accuracy demonstrates how the dataset was encoded and the dataset's unique symptom-prognosis relationships
-- The high accuracy was investigated with Decision Tree model which confirmed that the perfect performance is due to symptoms being mutually exclusive within the dataset
+    - The high accuracy was investigated with Decision Tree model which confirmed that the perfect performance is due to symptoms being mutually exclusive within the dataset
 - This indicates inherent data separability within the dataset and our approach to validating our methodology and ruling out common issues
 
 
@@ -66,19 +65,21 @@ Reviewing Dataset
 
 What are the key variables and attributes in your dataset?
 
-- Complete Dataset consists of 2 CSV files . One of them is training and other is for testing your model
+- Complete Dataset consists of 2 CSV files. One of them is training and other is for testing your model
 - Each CSV file has 133 columns. 132 of these columns are symptoms that a person experiences and last column is the prognosis
 - The 'prognosis' column is ou target value for prediction
 - The 132 symptoms are mapped to 42 diseases or prognosis
 
 How can we explore the relationships between different variables?
-- This is a binary classification of symptoms. So, looking at the prevanlence of symptoms across prognosis is a good exploration idea.
+- This is a binary tagging of symptoms. So, looking at the mean occurence and prevanlence of symptoms across prognosis is a good exploration idea.
+- We also looked at chi-squared tests for significance.
+    - The Chi-squared test of independence is used to determine if there is a statistically significant relationship between two categorical variables. In this case, we were testing each binary symptom (categorical: 0 or 1) against the categorical prognosis variable.
 
 Are there any patterns or trends in the data that we can identify?
 - We can see that four prognosis share some of the similar symptoms (one or more), which could lead to confusion.
 
 Who is the intended audience?
-- This analysis is catered for Health Data Analysts, ML Practitioners and the outcome is well suited for medical practitioners
+- This analysis is catered for Health Data Analysts, ML Practitioners and the outcome can be read by medical practitioners with the biases and limitations explained below.
 
 What is the question our analysis is trying to answer?
 - We want to understand which symptoms are most significant predictors of "Heart attack", and if some prognosis have similar symptoms then what can be some isolating or guiding features for diagnosis.
