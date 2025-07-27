@@ -152,7 +152,7 @@ u_of_t_dsi_disease_prediction_ml_project/
 ├── decision_tree_model/        # Notebook for Decision Tree Model
 ├── random_forest_model/        # Notebook for Random Forest Model
 ├── logistic_regression_model/  # Notebook for Logistic Regression Model
-├── Visualizations/             # Charts and graphs important for analysis
+├── visualizations/             # Plots, charts and graphs important for analysis
 ├── pkl_files/                  # WIP for .pkl files
 └── README.md                   # This file
 ```
@@ -192,6 +192,6 @@ This project was developed as part of an academic program. For questions or coll
 
 ---
 
-**📧 Contact**: shafayat.syed@outlook.com 
+**📧 Contact**: https://www.linkedin.com/in/shafayat-syed/
 **🎓 Institution**: University of Toronto Data Sciences Institute  
 **📅 Completion Date**: 2025-07-27
