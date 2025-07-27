@@ -153,7 +153,6 @@ u_of_t_dsi_disease_prediction_ml_project/
 ├── random_forest_model/        # Notebook for Random Forest Model
 ├── logistic_regression_model/  # Notebook for Logistic Regression Model
 ├── visualizations/             # Plots, charts and graphs important for analysis
-├── pkl_files/                  # WIP for .pkl files
 └── README.md                   # This file
 ```
 
@@ -174,7 +173,7 @@ python src/main_analysis.py
 
 - **Code Comments**: Comprehensive inline documentation
 - **Notebook Reflections**: Detailed analysis and insights
-- **Model Persistence**: Saved models in pickle format for reproducibility
+- **Model Persistence**: (coming soon!) models in pickle format for reproducibility
 
 ## 🤝 Contributing
 
