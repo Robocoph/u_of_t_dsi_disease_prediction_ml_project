@@ -37,6 +37,8 @@ The following symptoms emerged as **significant predictors** of heart attack:
    - Pneumonia
    - Tuberculosis
 
+   For a full list of prognosis similar to heart attack, please see [this visualization](https://github.com/Robocoph/u_of_t_dsi_disease_prediction_ml_project/blob/main/visualization/01_heatmap_prognosis_similar_to_cancer.png)
+
 2. **Differential Diagnosis Requirements**: To accurately identify heart attack, healthcare providers should consider **excluding** the following symptoms strongly associated with other conditions:
 
    ```
@@ -47,11 +49,15 @@ The following symptoms emerged as **significant predictors** of heart attack:
    • swelled_lymph_nodes  • weight_loss           • yellowing_of_eyes
    ```
 
+     For a full list of symptoms, please see [this visualization](https://github.com/Robocoph/u_of_t_dsi_disease_prediction_ml_project/blob/main/visualization/04_heatmap_symptom_prevalence_across_difference_prognosis.png)
+
 3. **Dataset Limitations**: The unusually high accuracy (100%) indicates perfect symptom separation in the dataset, which is unrealistic in real-world scenarios. This suggests the need for:
-   - More comprehensive datasets
+   - A larger dataset with more diverse set of symptom representation
    - Gradient-based symptom severity (not just binary yes/no)
    - Quantitative scales and symptom intensity measures
-   - Women and men also suffer different symptoms during Heart attack, so demographic information should be considered too
+   - Women and men also suffer different symptoms during Heart attack, so demographic information would be valuable to consider
+
+   The confusion matrix can be found [here](https://github.com/Robocoph/u_of_t_dsi_disease_prediction_ml_project/blob/main/visualization/09_confusion_matrix_random_forest_classifier.png)
 
 ## 📊 Data Source
 
@@ -64,10 +70,14 @@ The following symptoms emerged as **significant predictors** of heart attack:
 ## 🔬 Methodology
 
 ### Data Preparation
-- Filtered dataset for target prognoses (Heart attack, GERD, Pneumonia, Tuberculosis)
+- Cleaned prognosis data for whitespace
 - Implemented strict train-test split to prevent data leakage
-- Performed dimensionality reduction by removing columns that had all 0 values or negative response in the training set
-- Applied cosine similarity analysis for symptom relationship exploration
+- Reduce dimensions on training dataset
+- Applied cosine similarity analysis for symptom relationship exploration for prognoses similar to Heart attack
+- Filtered dataset for three closest prognoses and the target prognosis (Heart attack, GERD, Pneumonia, Tuberculosis)
+- Performed dimensionality reduction by removing columns that had all 0 values or negative symptom response in the training set
+   - Once removed from training set, it was removed from testing set too before it was fit on the model
+
 
 ### Model Selection & Training
 - **Primary Model**: Random Forest Classifier
@@ -102,6 +112,8 @@ seaborn        # Statistical visualization
 - **Heatmaps**: Symptom-disease correlation matrices
 - **Decision Trees**: Model decision pathways
 
+For all visualizations, please check out the [visualization folder](https://github.com/Robocoph/u_of_t_dsi_disease_prediction_ml_project/tree/main/visualization)
+
 ## 🎯 Model Performance
 
 ### Algorithm Comparison
@@ -133,9 +145,10 @@ seaborn        # Statistical visualization
 
 ### Recommendations for Clinical Application
 - Comprehensive dataset validation required
+- Diverse symptom to prognosis will be required, especially considering symptom diversity in gender for heart attack
 - Integration with clinical expertise essential
-- Continuous monitoring for bias and accuracy needed
-- Patient safety protocols must be prioritized
+- Monitoring for bias and accuracy needed with additional demographic information
+- Patient safety protocols must be prioritized first before implementing any ML solution in healthcare
 
 ## 🎓 Target Audience
 
@@ -173,7 +186,7 @@ python src/main_analysis.py
 
 - **Code Comments**: Comprehensive inline documentation
 - **Notebook Reflections**: Detailed analysis and insights
-- **Model Persistence**: (coming soon!) models in pickle format for reproducibility
+- **Model Persistence**: (Coming soon!) models in pickle format for reproducibility
 
 ## 🤝 Contributing
 
@@ -183,11 +196,10 @@ This project was developed as part of an academic program. For questions or coll
 
 ## 📊 Future Work
 
-- [ ] Integration of gradient-based symptom severity
-- [ ] Expansion to larger, more diverse datasets  
-- [ ] Real-world clinical validation studies
-- [ ] Development of uncertainty quantification methods
-- [ ] Integration with electronic health records
+- [ ] Jurisdictional scan to investigate and search for larger, more diverse datasets  
+- [ ] Match with real-world clinical validation studies
+- [ ] Consultation with clinicians for improvements to our assumptions, analysis and insights
+- [ ] Exported encodings and models in pickle format for reproducibility
 
 ---
 
